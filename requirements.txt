@@ -1,0 +1,6 @@
+autopep8==1.6.0
+lxml==4.8.0
+pycodestyle==2.8.0
+PySide6==6.2.4
+shiboken6==6.2.4
+toml==0.10.2
