@@ -9,12 +9,12 @@
 
 ## Run application
 To run application with Python run this command :
-```
+```python
 python main.py
 ```
 
 ## Compile Windows .exe file
 To compile .exe file run this command :
-```
+```python
 python compile.py
 ```
