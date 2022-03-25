@@ -18,3 +18,12 @@ To compile .exe file run this command :
 ```Shell
 python compile.py
 ```
+
+## Export pattern
+You can use theses four tags in the export window :
+
+- [x] **{byte}** : Represent the BYTE
+- [x] **{module}** : Name of the module eg: "Module 00: PSS u2 P0 F/S EIP"
+- [x] **{address}** : The bit address eg: ".2"
+- [x] **{name}** : The bit name eg: "I 02"
+
