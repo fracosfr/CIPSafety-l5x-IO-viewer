@@ -1,5 +1,7 @@
 
 from PySide6.QtWidgets import QWidget, QTabBar, QListWidget, QVBoxLayout, QPushButton, QHBoxLayout, QFileDialog, QListWidgetItem
+from gui.export_window import ExportWindow
+from PySide6.QtGui import QIcon
 
 from lib.l5x_file import L5xFile
 from lib.l5x_io import L5xModule
@@ -12,7 +14,8 @@ class MainWindow(QWidget):
         self.l5x_file = L5xFile("")
 
         self.setWindowTitle("l5x Viewer")
-        self.setMinimumSize(800, 600)
+        self.setMinimumSize(900, 600)
+        self.setWindowIcon(QIcon("icon.ico"))
 
         self.data_sdi = []
         self.data_sdo = []
@@ -109,29 +112,5 @@ class MainWindow(QWidget):
             self.list_detail.addItem(i)
 
     def _export(self):
-        file_name, result = QFileDialog.getSaveFileName(
-            self, "Enregistrer sous", '', "Fichier .CSV (*.csv)")
-        if result:
-            if file_name.lower()[-4:] != ".csv":
-                file_name += ".csv"
-            
-            data = "Type;Byte;Name;Bit;Address"
-            
-            for module in self.data_sdi:
-                for add in module.values:
-                    data += f"\nSafety input;{module.operand};{module.name};{module.operand}{add.operand};{add.name}"
-            for module in self.data_sdo:
-                for add in module.values:
-                    data += f"\nSafety output;{module.operand};{module.name};{module.operand}{add.operand};{add.name}"
-            for module in self.data_di:
-                for add in module.values:
-                    data += f"\nStandard input;{module.operand};{module.name};{module.operand}{add.operand};{add.name}"
-            for module in self.data_do:
-                for add in module.values:
-                    data += f"\nStandard ouput;{module.operand};{module.name};{module.operand}{add.operand};{add.name}"
-            
-            
-            with open(file_name, "w") as f:
-                f.write(data)
-                
-    
+        self.export_window = ExportWindow(self.l5x_file)
+        self.export_window.show()
