@@ -39,6 +39,7 @@ class L5xFile():
                             else:
                                 current_module_values.append(
                                     L5xAddress(operand[-2:], el.text))
+                        self.sdi.append(L5xModule(current_operand, current_module_name, current_module_values))
                     elif type_name == "SafetyOutput":
                         current_module_name = ""
                         current_operand = ""
@@ -55,6 +56,7 @@ class L5xFile():
                             else:
                                 current_module_values.append(
                                     L5xAddress(operand[-2:], el.text))
+                        self.sdo.append(L5xModule(current_operand, current_module_name, current_module_values))
                     elif type_name == "Standard":
                         current_module_name = ""
                         current_operand = ""
@@ -71,7 +73,7 @@ class L5xFile():
                             else:
                                 current_module_values.append(
                                     L5xAddress(operand[-2:], el.text))
-
+                        self.di.append(L5xModule(current_operand, current_module_name, current_module_values))
                         current_module_name = ""
                         current_operand = ""
                         current_module_values = []
@@ -87,7 +89,7 @@ class L5xFile():
                             else:
                                 current_module_values.append(
                                     L5xAddress(operand[-2:], el.text))
-
+                        self.do.append(L5xModule(current_operand, current_module_name, current_module_values))
             except:
                 pass
 
